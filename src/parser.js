@@ -388,6 +388,9 @@ class Parser {
             // backtick (``)
             '`(?:[^`\\\\]|\\\\(?:.|$))*`' +
             '|' +
+            // 数字
+            '[1-9]\\d*' +
+            '|' +
             // double quotes ("")
             '"(?:[^"\\\\]|\\\\(?:.|$))*"' +
             '|' +
@@ -396,16 +399,20 @@ class Parser {
             ')' + matchSpecialCharacters;
         const pattern = '(?:(?:^\\s*)|[^a-zA-Z0-9_])' +
             '(?:' + matchFuncs + ')' +
-            '\\(' + stringGroup +
-            '(?:[\\,]' + stringGroup + ')?' +
+            '\\(' +
+             stringGroup +
+            '(?:[\\,]' +
+             stringGroup +
+              ')?' +
             '[\\,\\)]';
         const re = new RegExp(pattern, 'gim');
+
+        // console.log(pattern)
 
         let r;
         while ((r = re.exec(content))) {
             const options = {};
             const full = r[0];
-
             let key = this.fixStringAfterRegExp(r[1], true);
             if (!key) {
                 continue;

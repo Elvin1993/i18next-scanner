@@ -13,7 +13,6 @@ const transform = (parser, customTransform) => {
         const { options } = parser;
         const content = fs.readFileSync(file.path, enc);
         const extname = path.extname(file.path);
-
         if (includes(get(options, 'attr.extensions'), extname)) {
             // Parse attribute (e.g. data-i18n="key")
             parser.parseAttrFromString(content, {
