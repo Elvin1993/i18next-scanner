@@ -111,13 +111,18 @@ const flush = (parser, customFlush) => {
 // @param {function} [customFlush]
 // @return {object} Returns a through2.obj().
 const createStream = (options, customTransform, customFlush) => {
-    const parser = new Parser(options);
-    const stream = through2.obj(
-        transform(parser, customTransform),
-        flush(parser, customFlush)
-    );
+   try {
+        const parser = new Parser(options);
+        const stream = through2.obj(
+            transform(parser, customTransform),
+            flush(parser, customFlush)
+        );
+        return stream;
 
-    return stream;
+   } catch (error) {
+       console.error('error', error)
+   }
+
 };
 
 // Convenience API
