@@ -67,7 +67,11 @@ try {
     }
 }
 
-vfs.src(config.input)
+try {
+    vfs.src(config.input)
     .pipe(sort()) // Sort files in stream by path
     .pipe(scanner(config.options, config.transform, config.flush))
     .pipe(vfs.dest(config.output))
+} catch (error) {
+    console.log('失败', error)
+}
