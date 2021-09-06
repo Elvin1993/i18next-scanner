@@ -2,6 +2,8 @@
 
 [![NPM](https://nodei.co/npm/i18next-scanner.png?downloads=true&stars=true)](https://www.npmjs.com/package/i18next-scanner)
 
+forked by i18next-scanner and add feature key support number and use examples/i18next-scanner.config.js config file can support typescript
+
 Scan your code, extract translation keys/values, and merge them into i18n resource files.
 
 Turns your code
